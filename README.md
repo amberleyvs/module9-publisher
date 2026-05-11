@@ -19,3 +19,5 @@ The second `guest` is the password.
 `5672` is the default RabbitMQ port for AMQP communication.
 
 Because the publisher and subscriber use the same AMQP URL, both programs connect to the same RabbitMQ message broker. This allows the publisher to send messages to RabbitMQ and the subscriber to receive those messages from RabbitMQ.
+
+![RabbitMQ Dashboard](rabbitmq-dashboard.png)
