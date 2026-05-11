@@ -20,4 +20,13 @@ The second `guest` is the password.
 
 Because the publisher and subscriber use the same AMQP URL, both programs connect to the same RabbitMQ message broker. This allows the publisher to send messages to RabbitMQ and the subscriber to receive those messages from RabbitMQ.
 
-![RabbitMQ Dashboard](rabbitmq-dashboard.png)
+**Running RabbitMQ as message broker.**
+![RabbitMQ Dashboard](images/rabbitmq-dashboard.png)
+
+**Sending and processing event**
+![sending-processing](images/sending-processing.png)
+In this experiment, I ran RabbitMQ as the message broker, then started the subscriber program so it could listen to the `user_created` queue.
+
+After that, I ran the publisher program using `cargo run`. The publisher sent 5 `UserCreatedEventMessage` events to RabbitMQ. Since the subscriber was already listening to the same queue, it immediately received and processed those messages.
+
+This shows the event-driven architecture flow. The publisher does not communicate directly with the subscriber. Instead, the publisher sends events to RabbitMQ, and the subscriber consumes the events from RabbitMQ.
