@@ -30,3 +30,10 @@ In this experiment, I ran RabbitMQ as the message broker, then started the subsc
 After that, I ran the publisher program using `cargo run`. The publisher sent 5 `UserCreatedEventMessage` events to RabbitMQ. Since the subscriber was already listening to the same queue, it immediately received and processed those messages.
 
 This shows the event-driven architecture flow. The publisher does not communicate directly with the subscriber. Instead, the publisher sends events to RabbitMQ, and the subscriber consumes the events from RabbitMQ.
+
+**Monitoring RabbitMQ Message Chart**
+![RabbitMQ Message Chart](images/monitor-chart.png)
+
+When I ran the publisher again, the RabbitMQ chart showed message activity. This happened because every publisher run sends 5 messages to the `user_created` queue.
+
+The chart shows that RabbitMQ receives messages from the publisher and delivers them to the subscriber. If the subscriber processes messages quickly, the queue does not stay full for long because the messages are consumed almost immediately.
