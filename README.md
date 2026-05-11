@@ -37,3 +37,14 @@ This shows the event-driven architecture flow. The publisher does not communicat
 When I ran the publisher again, the RabbitMQ chart showed message activity. This happened because every publisher run sends 5 messages to the `user_created` queue.
 
 The chart shows that RabbitMQ receives messages from the publisher and delivers them to the subscriber. If the subscriber processes messages quickly, the queue does not stay full for long because the messages are consumed almost immediately.
+
+## Bonus: Sending and Processing Event on Cloud
+
+![Cloud Sending and Processing Event](images/cloud-sending-processing-event.png)
+
+For the bonus experiment, I ran RabbitMQ on an AWS EC2 cloud instance instead of my local machine.
+
+The publisher and subscriber were connected to the same RabbitMQ message broker using this AMQP URL format:
+
+```txt
+amqp://amber:<password>@100.30.183.35:5672
