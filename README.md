@@ -42,9 +42,16 @@ The chart shows that RabbitMQ receives messages from the publisher and delivers 
 
 ![Cloud Sending and Processing Event](images/cloud-sending-processing-event.png)
 
+![Cloud Sending and Processing Event Console](images/cloud-sending-processing-event-console.png)
+
 For the bonus experiment, I ran RabbitMQ on an AWS EC2 cloud instance instead of my local machine.
 
 The publisher and subscriber were connected to the same RabbitMQ message broker using this AMQP URL format:
 
 ```txt
 amqp://amber:<password>@100.30.183.35:5672
+```
+
+The publisher sent 5 UserCreatedEventMessage events to RabbitMQ. Since the subscriber was already connected to the same cloud RabbitMQ broker and listening to the user_created queue, the subscriber received and processed the messages.
+
+This shows that event-driven architecture still works even when the message broker runs on a different machine. The publisher does not communicate directly with the subscriber. Both programs only need to connect to the same RabbitMQ broker.
